@@ -26,13 +26,13 @@ uv add goat-attention
 pip install goat-attention
 ```
 
-- **uv (editable, for development)**:
+- **From source (editable)**:
 
 ```bash
 uv pip install -e .
 ```
 
-- **pip (editable, for development)**:
+- **From source (editable, pip)**:
 
 ```bash
 pip install -e .
@@ -73,12 +73,12 @@ goat smoke
 
 ## Documentation
 
-See `docs/` (MkDocs-ready markdown):
+See `docs/`:
 
-- `docs/index.md`
-- `docs/usage.md`
-- `docs/api.md`
-- `docs/development.md`
+- [`docs/index.md`](docs/index.md)
+- [`docs/usage.md`](docs/usage.md)
+- [`docs/api.md`](docs/api.md)
+- [`docs/development.md`](docs/development.md)
 
 ## Development
 
@@ -90,4 +90,19 @@ pytest
 ## License
 
 MIT (see `LICENSE`).
+
+## Citation
+
+If you find GOAT useful, please cite:
+
+```bibtex
+@misc{goat_attention,
+  title         = {Generalized Optimal Transport Attention with Trainable Priors},
+  author        = {Litman, Elon and ...},
+  year          = {2026},
+  eprint        = {XXXX.XXXXX},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+```
 
