@@ -96,8 +96,8 @@ MIT (see `LICENSE`).
 If you find GOAT useful, please cite:
 
 ```bibtex
-@misc{goat_attention,
-  title         = {Generalized Optimal Transport Attention with Trainable Priors},
+@misc{goat,
+  title         = {You Need Better Attention Priors},
   author        = {Litman, Elon and ...},
   year          = {2026},
   eprint        = {XXXX.XXXXX},
