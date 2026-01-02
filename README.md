@@ -1,10 +1,16 @@
 ## GOAT Attention
 
-<p align="center">
-  <img src="figs/goated.png" alt="GOAT Attention" width="480" />
-</p>
+[![PyPI](https://img.shields.io/pypi/v/goat-attention.svg)](https://pypi.org/project/goat-attention/)
+![Python](https://img.shields.io/pypi/pyversions/goat-attention.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-This repository provides the code for Generalized Optimal transport Attention with Trainable priors (**`GOAT`**). This is provided as a PyTorch multi-head attention module.
+Generalized Optimal Transport Attention with Trainable Priors (**GOAT**), presented as a PyTorch multi-head attention module.
+
+> **Install name:** `goat-attention` (PyPI) · **Import name:** `goat`
+
+<p align="center">
+  <img src="figs/goated.png" alt="GOAT Attention" width="320" />
+</p>
 
 ## Installation
 
@@ -12,6 +18,12 @@ This repository provides the code for Generalized Optimal transport Attention wi
 
 ```bash
 uv add goat-attention
+```
+
+- **pip**:
+
+```bash
+pip install goat-attention
 ```
 
 - **uv (editable, for development)**:
@@ -74,4 +86,8 @@ See `docs/` (MkDocs-ready markdown):
 uv pip install -e ".[dev]"
 pytest
 ```
+
+## License
+
+MIT (see `LICENSE`).
 
