@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/pypi/pyversions/goat-attention.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Generalized Optimal Transport Attention with Trainable Priors (**GOAT**), presented as a PyTorch multi-head attention module.
+Generalized Optimal Transport Attention with Trainable Priors (**GOAT**), available as a PyTorch multi-head attention module.
 
 > **Install name:** `goat-attention` (PyPI) · **Import name:** `goat`
 

@@ -2,7 +2,7 @@
 
 This project packages **GOAT-style attention** as a reusable PyTorch module: `goat.GoatAttention`.
 
-- **Main feature**: spectral relative prior + optional key-only sink term (see class docstring).
+- **Main feature**: parameterizes a neural EOT prior in the core of the attention mechanism using a relative prior and a key-only sink term (see class docstring).
 - **Intended use**: drop-in attention replacement in transformer blocks (GPT-style, ViT-style, etc.).
 
 ### Install
