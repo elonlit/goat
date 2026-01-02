@@ -6,7 +6,6 @@ This file contains the full PyTorch implementation for GOAT.
 
 from __future__ import annotations
 
-import contextlib
 import math
 from collections import OrderedDict
 from typing import Optional, Tuple, Any, Dict, List, Union
@@ -1209,35 +1208,30 @@ class GoatAttention(_GoatAttentionBase):
             causal_add = causal_add.masked_fill(~allowed, float("-inf"))
             merged_mask = causal_add if merged_mask is None else (merged_mask + causal_add)
 
-        # Run SDPA (query scaling is adjusted to match this module's logits).
-        q_in = q_total * math.sqrt(D_total)
-        k_in = k_total
-        v_in = v_total
+        # Run SDPA.
+        # IMPORTANT: keep 4D (B,H,L,D) tensors so Flash/mem-efficient/cuDNN kernels are eligible.
+        # Query scaling is adjusted to match this module's logits.
+        q_in = (q_total * math.sqrt(D_total)).contiguous()  # (N, H, L, D_total)
+        k_in = k_total.contiguous()  # (N, H, S, D_total)
+        v_in = v_total.contiguous()  # (N, H, S, D_total)
 
-        q_bh = q_in.reshape(N * self.num_heads, L, D_total)
-        k_bh = k_in.reshape(N * self.num_heads, S, D_total)
-        v_bh = v_in.reshape(N * self.num_heads, S, D_total)
+        attn_mask_4d = None
+        if merged_mask is not None:
+            # merged_mask is (1, L, S) or (N*H, L, S). SDPA wants broadcastable to (N, H, L, S).
+            if merged_mask.size(0) == 1:
+                attn_mask_4d = merged_mask.reshape(1, 1, L, S)
+            else:
+                attn_mask_4d = merged_mask.reshape(N, self.num_heads, L, S)
 
-        if torch.cuda.is_available() and hasattr(torch.backends.cuda, "sdp_kernel"):
-            cm = torch.backends.cuda.sdp_kernel(
-                enable_math=True,
-                enable_flash=True,
-                enable_mem_efficient=True,
-            )
-        else:
-            cm = contextlib.nullcontext()
+        attn_output = F.scaled_dot_product_attention(
+            q_in,
+            k_in,
+            v_in,
+            attn_mask=attn_mask_4d,
+            dropout_p=self.dropout if self.training else 0.0,
+            is_causal=use_internal_causal,
+        )  # (N, H, L, D_total)
 
-        with cm:
-            attn_output = F.scaled_dot_product_attention(
-                q_bh,
-                k_bh,
-                v_bh,
-                attn_mask=merged_mask,
-                dropout_p=self.dropout if self.training else 0.0,
-                is_causal=use_internal_causal,
-            )
-
-        attn_output = attn_output.view(N, self.num_heads, L, D_total)
         attn_output = attn_output.permute(0, 2, 1, 3).contiguous().reshape(N, L, self.embed_dim)
         attn_output = self.out_proj(attn_output)
         if not self.batch_first:
