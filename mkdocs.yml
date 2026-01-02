@@ -1,0 +1,16 @@
+site_name: GOAT Attention
+repo_name: goat-attention
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - API: api.md
+  - Development: development.md
+
