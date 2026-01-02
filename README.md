@@ -1,5 +1,9 @@
 ## GOAT Attention
 
+<p align="center">
+  <img src="figs/goated.png" alt="GOAT Attention" width="240" />
+</p>
+
 This repository provides the code for Generalized Optimal transport Attention with Trainable priors (**`GOAT`**). This is provided as a PyTorch multi-head attention module.
 
 ## Installation
