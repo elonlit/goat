@@ -62,6 +62,21 @@ out, weights = attn(xq, xk, xv, is_causal=False, need_weights=True)
 print(out.shape, None if weights is None else weights.shape)
 ```
 
+## Key Parameters
+
+GOAT uses spectral (Fourier) features to model positional relationships. The two main hyperparameters are:
+
+| Parameter | Description | Typical Range |
+|-----------|-------------|---------------|
+| `pos_rank` | Number of Fourier frequencies for **relative** position encoding. Controls how finely the model can distinguish between different relative distances. Higher values = more expressive distance modeling. | 2–16 |
+| `abs_rank` | Number of Fourier frequencies for **absolute** position encoding, used by the learned "sink" bias `u(j)`. Controls position-dependent attention patterns (e.g., attending to sequence start). | 2–8 |
+
+**Guidelines:**
+- For **language models** (GPT-style): `pos_rank=4, abs_rank=4` is a good starting point
+- For **vision transformers** (ViT): `pos_rank=16, abs_rank=2` works well with 2D positional encoding
+- For **long-context tasks**: Higher `pos_rank` may help capture fine-grained positional patterns
+- Set `enable_key_bias=False` to disable the sink term entirely (removes `abs_rank` dependency)
+
 ## CLI
 
 After installation:
