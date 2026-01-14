@@ -1043,6 +1043,8 @@ def main():
                         help="List of test-time resolutions for Panel A.")
     parser.add_argument("--goat_pos_rank", type=int, default=16,
                         help="pos_rank passed into GoatAttention.for_vit for GOAT.")
+    parser.add_argument("--goat_abs_rank", type=int, default=2,
+                        help="abs_rank passed into GoatAttention.for_vit for GOAT.")
     parser.add_argument("--goat_pos_encoding", type=str, default="2d",
                         choices=["1d", "2d"],
                         help="pos_encoding passed into GoatAttention.for_vit for GOAT.")
@@ -1229,6 +1231,7 @@ def main():
         seed_all(args.seed)
         goat_kwargs = {
             "pos_rank": args.goat_pos_rank,
+            "abs_rank": args.goat_abs_rank,
             "pos_encoding": args.goat_pos_encoding,
             "dropout": args.drop,  # GOAT attention dropout
         }
@@ -1364,6 +1367,7 @@ def main():
         print("\n=== Panel A: Evaluating GOAT ===")
     goat_kwargs = {
         "pos_rank": args.goat_pos_rank,
+        "abs_rank": args.goat_abs_rank,
         "pos_encoding": args.goat_pos_encoding,
         "dropout": 0.0,  # eval
     }

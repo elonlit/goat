@@ -119,6 +119,7 @@ uv run torchrun --standalone --nproc_per_node=8 experiments/imagenet.py \
 
 **GOAT-specific options:**
 - `--goat_pos_rank`: Positional Fourier rank (default: 16)
+- `--goat_abs_rank`: Absolute Fourier rank for sink term (default: 2)
 - `--goat_pos_encoding`: Positional encoding type (`1d` or `2d`, default: `2d`)
 
 ---
