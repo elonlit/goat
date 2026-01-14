@@ -14,7 +14,7 @@ uv sync
 
 ### 1. Synthetic Benchmarks (`synthetic.py`)
 
-Synthetic benchmarks: Passkey Retrieval accuracy, Needle-in-a-Haystack (NIAH) data, and GOAT prior.
+Synthetic benchmarks: Passkey Retrieval and Needle-in-a-Haystack (NIAH).
 
 ```bash
 uv run python experiments/synthetic.py --run_full
