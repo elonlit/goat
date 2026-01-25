@@ -113,9 +113,9 @@ If you find GOAT useful, please cite:
 ```bibtex
 @misc{goat,
   title         = {You Need Better Attention Priors},
-  author        = {Litman, Elon and ...},
+  author        = {Elon Litman and Gabe Guo},
   year          = {2026},
-  eprint        = {XXXX.XXXXX},
+  eprint        = {2601.15380},
   archivePrefix = {arXiv},
   primaryClass  = {cs.LG}
 }
