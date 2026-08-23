@@ -111,13 +111,14 @@ MIT (see `LICENSE`).
 If you find GOAT useful, please cite:
 
 ```bibtex
-@misc{goat,
-  title         = {You Need Better Attention Priors},
-  author        = {Elon Litman and Gabe Guo},
-  year          = {2026},
-  eprint        = {2601.15380},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.LG}
+@inproceedings{goat,
+  title     = {You Need Better Attention Priors},
+  author    = {Litman, Elon and Guo, Gabe},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {306},
+  year      = {2026},
+  publisher = {PMLR}
 }
 ```
 
